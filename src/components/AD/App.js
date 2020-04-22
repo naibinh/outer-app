@@ -24,10 +24,9 @@ function App() {
     useEffect(() => {
         window.addEventListener('message', function (event) {
             if (!event || !event.data || !event.data.gdc) return false;
-            // const data = JSON.stringify(event.data);
-            // console.log(data);
+            console.log(event.data.gdc);
             setLogs([{
-                timestamp: Date.now(),
+                timestamp: (new Date()).toLocaleString(),
                 description: event.data.gdc,
             }, ...logs]);
         });

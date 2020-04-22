@@ -9,8 +9,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        // backgroundColor: "#f5f5f5"
     },
     heading: {
+        padding: "5px",
+        margin: "5px",
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
@@ -34,8 +37,8 @@ function ExpansionLog(props) {
                 <Typography className={className}>{timestamp}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography>
-                    {JSON.stringify(description)}
+                <Typography paragraph={true}>
+                    {JSON.stringify(description, null, '\t')}
                 </Typography>
             </ExpansionPanelDetails>
         </ExpansionPanel>

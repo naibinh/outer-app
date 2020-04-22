@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Input from '@material-ui/core/Input';
 
 function EmbeddedGdc() {
-    const [iframeSrc, setIframeSrc] = useState("https://staging3.intgdc.com/analyze/embedded/#");
+    const [iframeSrc, setIframeSrc] = useState("https://client-demo.na.intgdc.com:50043/analyze/embedded/#");
     const onIframeSrcChanged = (event) => {
         setIframeSrc(event.target.value);
     };
