@@ -1,0 +1,9 @@
+.embedded-control {
+    clear: both;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.embedded-control input {
+    width: 900px;
+}

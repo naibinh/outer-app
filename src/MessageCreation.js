@@ -10,6 +10,21 @@ class MessageCreation extends React.PureComponent {
         };
     }
 
+    resetMessageAsOpenInsightFormat = () => {
+        this.changeMessage(JSON.stringify({
+            gdc: {
+                product: "analyticalDesigner",
+                event: {
+                    name: "openInsight",
+                    data: {
+                        reportId: "84120",
+                        projectId: "px4o16t9ftwkloa82p4o78zv34lqk4vs"
+                    }
+                }
+            }
+        }));
+    }
+
     resetMessageAsClearFormat = () => {
         this.changeMessage(JSON.stringify({
             gdc: {
@@ -91,13 +106,14 @@ class MessageCreation extends React.PureComponent {
     render() {
         return (
           <div className="message-creation">
+            <button onClick={this.resetMessageAsOpenInsightFormat}>openInsigh format</button>
             <button onClick={this.resetMessageAsClearFormat}>clear format</button>
             <button onClick={this.resetMessageAsSaveFormat}>save format</button>
             <button onClick={this.resetMessageAsSaveAsFormat}>save as format</button>
             <button onClick={this.resetMessageAsExportFormat}>export format</button>
             <br/>
             <span>Message: </span><br/>
-            <textarea value={this.state.message} onChange={this.onMessageChange} cols={120} rows={15} />
+            <textarea className="fwMultilineTextbox" value={this.state.message} onChange={this.onMessageChange} cols={120} rows={15} />
           </div>
         );
     }
