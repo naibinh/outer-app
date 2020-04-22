@@ -3,6 +3,7 @@ export const sendCommand = (command, embeddedId) => {
     if (!embeddedContentWindow) {
         console.log("Invalid", embeddedId);
     }
+    console.log(command);
     embeddedContentWindow.postMessage(command, '*');
 
 };

@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import Input from '@material-ui/core/Input';
 import {EMBEDDED_AD} from "./AD/constant";
 
-const DEFAULT_URL = "https://client-demo.na.intgdc.com:50043/analyze/embedded/#";
+const DEFAULT_URL = "https://client-demo.na.intgdc.com:50017/analyze/embedded/#/iwvpiaxlibdmb68r8q5kkaz348rm03dw/122/edit";
 // const DEFAULT_URL = "https://google.com";
 
 function EmbeddedGdc() {
