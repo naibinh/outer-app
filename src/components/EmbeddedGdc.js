@@ -1,14 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Input from '@material-ui/core/Input';
 
+// const DEFAULT_URL = "https://client-demo.na.intgdc.com:50043/analyze/embedded/#";
+const DEFAULT_URL = "https://google.com";
+
 function EmbeddedGdc() {
-    const [iframeSrc, setIframeSrc] = useState("https://client-demo.na.intgdc.com:50043/analyze/embedded/#");
+    const inputRef = useRef();
+    const [iframeSrc, setIframeSrc] = useState(DEFAULT_URL);
+
     const onIframeSrcChanged = (event) => {
-        setIframeSrc(event.target.value);
+        event.preventDefault();
+        if (inputRef.current) {
+            setIframeSrc(inputRef.current.value);
+        }
     };
     return (
         <div className="embedded-gdc">
-            <Input placeholder="Embedded URL" onChange={onIframeSrcChanged} value={iframeSrc} fullWidth />
+            <form onSubmit={onIframeSrcChanged}>
+            <Input placeholder="Embedded URL (enter to submit)" defaultValue={iframeSrc} fullWidth autoFocus inputRef={inputRef} color="blue"/>
+            </form>
             <iframe id="embedded" src={iframeSrc} frameBorder="0"
                     title="embedded"></iframe>
         </div>
