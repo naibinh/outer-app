@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MessageCreation from "./MessageCreation"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  onMessageChange = () => {
+    // TODO
+  }
+  render() {
+    return (
+      <div className="App">
+        <MessageCreation onMessageChange={this.onMessageChange}/>
+        <br/>
+        <iframe id="gooddata" src="" width="100%" height="600px" frameborder="0"></iframe>
+        <br/>
+        <h2>recived messages</h2>
+        <div id="newMessage"> </div>
+      </div>
+    );
+  }
 }
 
 export default App;
