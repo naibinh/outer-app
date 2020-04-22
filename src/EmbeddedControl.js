@@ -6,7 +6,7 @@ class EmbeddedControl extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            iframeSrc: "https://localhost:8443/analyze/embedded/#/px4o16t9ftwkloa82p4o78zv34lqk4vs/reportId/edit"
+            iframeSrc: "https://staging3.intgdc.com/analyze/embedded/#/"
         };
     }
 
