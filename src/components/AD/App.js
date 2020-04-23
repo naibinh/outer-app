@@ -23,6 +23,15 @@ function App() {
     const classes = useStyles();
     const [logs, setLogs] = useState([]);
 
+    const logCommand = (command) => {
+        setLogs([{
+            id: Date.now(),
+            direction: "outer to embedded",
+            timestamp: (new Date()).toLocaleTimeString(),
+            description: command.gdc,
+        }, ...logs]);
+    };
+
     useEffect(() => {
         window.addEventListener('message', function (event) {
             if (!event || !event.data || !event.data.gdc) {
@@ -30,7 +39,9 @@ function App() {
             }
 
             setLogs([{
-                timestamp: (new Date()).toLocaleString(),
+                id: Date.now(),
+                direction: "embedded to outer",
+                timestamp: (new Date()).toLocaleTimeString(),
                 description: event.data.gdc,
             }, ...logs]);
         });
@@ -43,7 +54,7 @@ function App() {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography>Commands</Typography>
-                            <Commands/>
+                            <Commands logCommand={logCommand}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={8}>

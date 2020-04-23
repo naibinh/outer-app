@@ -6,9 +6,10 @@ import SaveCommand from "./SaveCommand";
 import OtherCommands from "./OtherCommands";
 import ExportCommand from "./ExportCommand";
 
-export default function Commands() {
+export default function Commands({logCommand}) {
 
     const send = (command) => {
+        logCommand(command);
         sendCommand(command, EMBEDDED_AD);
     };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -20,12 +20,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ExpansionLog(props) {
-    const {timestamp, description, className, expanded} = props;
+    const classes = useStyles();
+    const {timestamp, description, direction, expanded} = props;
     const [isExpand, setExpand] = useState(expanded);
 
     function onChange(_event, expanded) {
         setExpand(Boolean(expanded));
     }
+
+    // update `isExpand` whenever `expanded` prop is changed
+    useEffect(() => {
+        setExpand(Boolean(expanded));
+    }, [expanded]);
 
     return (
         <ExpansionPanel expanded={isExpand} onChange={onChange}>
@@ -34,10 +40,10 @@ function ExpansionLog(props) {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
-                <Typography className={className}>{timestamp}</Typography>
+                <Typography className={classes.heading}>{`${timestamp} - ${direction}`}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography paragraph={true}>
+                <Typography>
                     {JSON.stringify(description, null, '\t')}
                 </Typography>
             </ExpansionPanelDetails>
@@ -51,13 +57,11 @@ export default function ExpansionLogs(props) {
 
     return (
         <div className={classes.root}>
-            <Typography>
-                Receive Logs
-            </Typography>
+            <Typography>Logs</Typography>
             {logs.map((log, index) => {
-                const {timestamp, description} = log;
-                const expanded = index === 0;
-                return (<ExpansionLog key={timestamp} timestamp={timestamp} description={description} className={classes.heading}
+                const {id, timestamp, description, direction} = log;
+                const expanded = index === 0 ? true : false;
+                return (<ExpansionLog key={id} timestamp={timestamp} description={description} direction={direction}
                                       expanded={expanded}/>)
             })}
         </div>

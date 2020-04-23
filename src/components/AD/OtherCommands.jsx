@@ -34,9 +34,9 @@ export default function OtherCommands({sendCommand}) {
     const classes = useStyles();
 
     const handleAction = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
 
-        const command = buildCommand(event.target.id);
+        const command = buildCommand(event.currentTarget.id);
         sendCommand(command);
     };
 
