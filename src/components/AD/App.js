@@ -40,16 +40,30 @@ function App() {
 
     useEffect(() => {
         window.addEventListener('message', function (event) {
-            if (!event || !event.data || !event.data.gdc) {
+            if (!event || !event.data) {
                 return false;
             }
 
-            setLogs([{
-                id: Date.now(),
-                direction: "embedded to outer",
-                timestamp: (new Date()).toLocaleTimeString(),
-                description: event.data.gdc,
-            }, ...logs]);
+            let gdc;
+            if (typeof event.data === "string") {
+                try {
+                    const data = JSON.parse(event.data);
+                    gdc = data && data.gdc;
+                } catch (_) {
+
+                }
+            } else {
+                gdc = event.data.gdc;
+            }
+
+            if (gdc) {
+                setLogs([{
+                    id: Date.now(),
+                    direction: "embedded to outer",
+                    timestamp: (new Date()).toLocaleTimeString(),
+                    description: gdc,
+                }, ...logs]);
+            }
         });
     }, [logs]);
 
