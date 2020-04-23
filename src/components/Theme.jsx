@@ -13,6 +13,9 @@ const theme = createMuiTheme({
             contrastText: '#000',
         },
     },
+    typography: {
+        fontSize: 12,
+    },
 });
 
 export default function Theme(props) {

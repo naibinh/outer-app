@@ -5,28 +5,19 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Typography from "@material-ui/core/Typography";
+import {CARD_STYLE} from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        borderColor: theme.palette.primary[500],
-        display: "inline-block",
-        marginRight: theme.spacing(1),
-    },
-    textField: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
+    ...CARD_STYLE(theme),
     projectId: {
         minWidth: 300,
+        marginRight: theme.spacing(1),
     },
     insightId: {
-        minWidth: 200,
+        minWidth: 150,
     },
-    cardActions: {
-        display: "flex",
-        justifyContent: "flex-end",
+    button: {
+        fontSize: "10px",
     }
 }));
 
@@ -62,20 +53,16 @@ export default function OpenCommand({sendCommand}) {
 
     return (
         <Card className={classes.card} variant="outlined">
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Open Insight
-                </Typography>
-                <form className={classes.textField} noValidate autoComplete="off">
-                    <TextField required id="projectId" label="Project Id" inputRef={projectIdRef}
-                               className={classes.projectId}/>
-                    <TextField required id="reportId" label="Insight Id" inputRef={insightIdRef}
-                               className={classes.insightId}/>
-                </form>
+            <CardContent className={classes.cardContent}>
+                <TextField required id="projectId" label="Project Id" inputRef={projectIdRef}
+                           className={classes.projectId}/>
+                <TextField required id="reportId" label="Insight Id" inputRef={insightIdRef}
+                           className={classes.insightId}/>
             </CardContent>
             <CardActions>
-                <Button variant="outlined" color={"primary"} onClick={openInsight}>
-                    Open
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"}
+                        onClick={openInsight}>
+                    Open Insight
                 </Button>
             </CardActions>
         </Card>

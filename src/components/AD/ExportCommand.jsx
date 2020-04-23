@@ -6,17 +6,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Typography from "@material-ui/core/Typography";
+import {CARD_STYLE} from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        borderColor: theme.palette.primary[500],
-        display: "inline-block",
-        marginRight: theme.spacing(1),
-    },
-    cardActions: {
-        display: "flex",
-        justifyContent: "flex-end",
+    ...CARD_STYLE(theme),
+    button: {
+        fontSize: "10px",
     }
 }));
 
@@ -53,10 +48,7 @@ export default function ExportCommand({sendCommand}) {
 
     return (
         <Card className={classes.card} variant="outlined">
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Export Insight
-                </Typography>
+            <CardContent className={classes.cardContent}>
                 <FormControlLabel
                     control={
                         <Checkbox
@@ -79,11 +71,11 @@ export default function ExportCommand({sendCommand}) {
                 />
             </CardContent>
             <CardActions>
-                <Button variant="outlined" color={"primary"} onClick={exportCsv}>
-                    CSV
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"} onClick={exportCsv}>
+                    Export to CSV
                 </Button>
-                <Button variant="outlined" color={"primary"} onClick={exportXlsx}>
-                    XLSX
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"} onClick={exportXlsx}>
+                    Export to XLSX
                 </Button>
             </CardActions>
         </Card>

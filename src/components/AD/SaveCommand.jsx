@@ -5,25 +5,16 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Typography from "@material-ui/core/Typography";
+import {CARD_STYLE} from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        borderColor: theme.palette.primary[500],
-        display: "inline-block",
-        marginRight: theme.spacing(1),
-    },
-    textField: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
+    ...CARD_STYLE(theme),
     title: {
-        minWidth: 300,
+        minWidth: 200,
+        fontSize: "10px",
     },
-    cardActions: {
-        display: "flex",
-        justifyContent: "flex-end",
+    button: {
+        fontSize: "10px",
     }
 }));
 
@@ -58,21 +49,18 @@ export default function SaveCommand({sendCommand}) {
 
     return (
         <Card className={classes.card} variant="outlined">
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Save Insight
-                </Typography>
-                <form className={classes.textField} noValidate autoComplete="off">
-                    <TextField required id="title" label="Insight Name" inputRef={titleRef}
-                               className={classes.title}/>
-                </form>
+            <CardContent className={classes.cardContent}>
+                <TextField required id="title" label="Insight Name" inputRef={titleRef}
+                           className={classes.title}/>
             </CardContent>
             <CardActions>
-                <Button variant="outlined" color={"primary"} onClick={saveInsight}>
-                    Save
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"}
+                        onClick={saveInsight}>
+                    Save Insight
                 </Button>
-                <Button variant="outlined" color={"primary"} onClick={saveAsInsight}>
-                    Save As
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"}
+                        onClick={saveAsInsight}>
+                    Save Insight As
                 </Button>
             </CardActions>
         </Card>
