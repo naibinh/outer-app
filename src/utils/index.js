@@ -10,3 +10,6 @@ export const sendCommand = (command, embeddedId) => {
 export const getContextId = (name) => {
     return `${name}-${Date.now()}`;
 };
+
+export const getItem = (app, name) => window.localStorage.getItem(`${app}-${name}`);
+export const setItem = (app, name, value) => window.localStorage.setItem(`${app}-${name}`, value);

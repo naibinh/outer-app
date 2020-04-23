@@ -1,11 +1,15 @@
 import React, {useRef} from 'react';
+
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
 import {CARD_STYLE} from "../../styles";
+import {getItem, setItem} from "../../utils";
+
 
 const useStyles = makeStyles((theme) => ({
     ...CARD_STYLE(theme),
@@ -48,6 +52,9 @@ export default function OpenCommand({sendCommand}) {
         const insightId = insightIdRef.current.value;
         const command = buildCommand(projectId, insightId);
 
+        setItem("ad", "projectId", projectId);
+        setItem("ad", "insightId", insightId);
+
         sendCommand(command, "openInsight");
     };
 
@@ -55,8 +62,10 @@ export default function OpenCommand({sendCommand}) {
         <Card className={classes.card} variant="outlined">
             <CardContent className={classes.cardContent}>
                 <TextField required id="projectId" label="Project Id" inputRef={projectIdRef}
+                           defaultValue={getItem("ad", "projectId")}
                            className={classes.projectId}/>
                 <TextField required id="reportId" label="Insight Id" inputRef={insightIdRef}
+                           defaultValue={getItem("ad", "insightId")}
                            className={classes.insightId}/>
             </CardContent>
             <CardActions>

@@ -79,7 +79,7 @@ function App() {
                     </Grid>
                     <Grid item xs={8}>
                         <Paper className={classes.paper}>
-                            <EmbeddedGdc/>
+                            <EmbeddedGdc appName="ad"/>
                         </Paper>
                     </Grid>
                     <Grid item xs={4}>

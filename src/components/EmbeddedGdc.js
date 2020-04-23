@@ -1,18 +1,21 @@
 import React, {useState, useRef} from 'react';
 import Input from '@material-ui/core/Input';
 import {EMBEDDED_AD} from "./AD/constant";
+import {setItem, getItem} from "../utils";
 
-const DEFAULT_URL = "https://client-demo.na.intgdc.com:50017/analyze/embedded/#/iwvpiaxlibdmb68r8q5kkaz348rm03dw/122/edit";
-// const DEFAULT_URL = "https://google.com";
+const EMBEDDED_URL = "embedded-url";
 
-function EmbeddedGdc() {
+function EmbeddedGdc({appName}) {
     const inputRef = useRef();
-    const [iframeSrc, setIframeSrc] = useState(DEFAULT_URL);
+    const [iframeSrc, setIframeSrc] = useState(getItem(appName, EMBEDDED_URL));
 
     const onIframeSrcChanged = (event) => {
         event.preventDefault();
         if (inputRef.current) {
-            setIframeSrc(inputRef.current.value);
+            const value = inputRef.current.value;
+
+            setItem(appName, EMBEDDED_URL, value);
+            setIframeSrc(value);
         }
     };
 
