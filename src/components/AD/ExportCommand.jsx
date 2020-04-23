@@ -27,7 +27,7 @@ function buildCommand(format, cellMergedChecked, includeFiltersChecked) {
                         mergeHeaders: cellMergedChecked,
                         showFilters: includeFiltersChecked
                     }
-                }
+                },
             }
         }
     };
@@ -40,7 +40,7 @@ export default function ExportCommand({sendCommand}) {
 
     const exportInsight = (event, format, cellMergedChecked, includeFiltersChecked) => {
         const command = buildCommand(format, cellMergedChecked, includeFiltersChecked);
-        sendCommand(command);
+        sendCommand(command, `exportInsight-${format}`);
     };
 
     const exportCsv = (event) => exportInsight(event, "csv");

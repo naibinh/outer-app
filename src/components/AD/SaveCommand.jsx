@@ -26,7 +26,7 @@ function buildCommand(title, gdcEventName) {
                 name: gdcEventName,
                 data: {
                     title
-                }
+                },
             }
         }
     };
@@ -41,7 +41,7 @@ export default function SaveCommand({sendCommand}) {
         const title = titleRef.current.value;
         const command = buildCommand(title, gdcEventName);
 
-        sendCommand(command);
+        sendCommand(command, gdcEventName);
     };
 
     const saveInsight = (event) => save(event, "saveInsight");

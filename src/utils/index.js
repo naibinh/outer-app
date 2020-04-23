@@ -6,3 +6,7 @@ export const sendCommand = (command, embeddedId) => {
     embeddedContentWindow.postMessage(command, '*');
 
 };
+
+export const getContextId = (name) => {
+    return `${name}-${Date.now()}`;
+};

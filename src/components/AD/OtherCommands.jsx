@@ -30,7 +30,7 @@ export default function OtherCommands({sendCommand}) {
         event.preventDefault();
 
         const command = buildCommand(event.currentTarget.id);
-        sendCommand(command);
+        sendCommand(command, event.currentTarget.id);
     };
 
     return (

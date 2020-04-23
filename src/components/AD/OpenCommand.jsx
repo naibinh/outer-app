@@ -30,7 +30,7 @@ function buildCommand(projectId, reportId) {
                 data: {
                     reportId,
                     projectId
-                }
+                },
             }
         }
     };
@@ -48,7 +48,7 @@ export default function OpenCommand({sendCommand}) {
         const insightId = insightIdRef.current.value;
         const command = buildCommand(projectId, insightId);
 
-        sendCommand(command);
+        sendCommand(command, "openInsight");
     };
 
     return (
