@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         color: theme.palette.text.secondary,
     },
+    logs: {
+        overflow: "scroll",
+        maxHeight: "800px",
+        padding: theme.spacing(1),
+        color: theme.palette.text.secondary,
+    },
 }));
 
 function App() {
@@ -63,7 +69,7 @@ function App() {
                         </Paper>
                     </Grid>
                     <Grid item xs={4}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.logs}>
                             <ExpansionLogs logs={logs}/>
                         </Paper>
                     </Grid>

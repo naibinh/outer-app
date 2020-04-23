@@ -4,6 +4,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +44,13 @@ function ExpansionLog(props) {
                 <Typography className={classes.heading}>{`${timestamp} - ${direction}`}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography>
-                    {JSON.stringify(description, null, '\t')}
-                </Typography>
+                <TextField
+                    fullWidth
+                    multiline
+                    rowsMax={20}
+                    variant="outlined"
+                    value={JSON.stringify(description, null, '\t')}
+                />
             </ExpansionPanelDetails>
         </ExpansionPanel>
     );
@@ -60,7 +65,7 @@ export default function ExpansionLogs(props) {
             <Typography>Logs</Typography>
             {logs.map((log, index) => {
                 const {id, timestamp, description, direction} = log;
-                const expanded = index === 0 ? true : false;
+                const expanded = index === 0;
                 return (<ExpansionLog key={id} timestamp={timestamp} description={description} direction={direction}
                                       expanded={expanded}/>)
             })}
