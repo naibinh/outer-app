@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import Input from '@material-ui/core/Input';
 import {EMBEDDED_AD} from "./AD/constant";
 import {setItem, getItem} from "../utils";
+import { EMBEDDED_KD } from './KD/Constant';
 
 const EMBEDDED_URL = "embedded-url";
 
@@ -25,7 +26,7 @@ function EmbeddedGdc({appName}) {
                 <Input placeholder="Embedded URL (enter to submit)" defaultValue={iframeSrc} fullWidth autoFocus
                        inputRef={inputRef}/>
             </form>
-            <iframe id={EMBEDDED_AD} src={iframeSrc} frameBorder="0" title="embedded"></iframe>
+            <iframe id={EMBEDDED_KD} src={iframeSrc} frameBorder="0" title="embedded"></iframe>
         </div>
     );
 }
