@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 
 import EmbeddedGdc from "../EmbeddedGdc";
 import ExpansionLogs from "../ExpansionLogs";
-import Commands from "./Commands";
 import Theme from "../Theme";
-import {EMBEDDED_AD} from "./constant";
+import KdCommands from "./Commands";
+import {EMBEDDED_KD} from "./Constant";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,15 +75,15 @@ function App() {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography>Commands</Typography>
-                            <Commands logCommand={logCommand}/>
+                            <KdCommands logCommand={logCommand}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={9}>
                         <Paper className={classes.paper}>
-                            <EmbeddedGdc appName="ad" id={EMBEDDED_AD}/>
+                            <EmbeddedGdc appName="kd"  id={EMBEDDED_KD}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                         <Paper className={classes.logs}>
                             <ExpansionLogs logs={logs}/>
                         </Paper>

@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 import "./styles/index.css";
-import App from './components/AD/App';
+import AdApp from './components/AD/App';
+import KdApp from './components/KD/App';
 
 ReactDOM.render(
-    <App/>,
+    <KdApp/>,
     document.getElementById('root')
 );
 
