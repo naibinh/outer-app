@@ -25,7 +25,7 @@ function buildCommand(format, cellMergedChecked, includeFiltersChecked) {
                     config: {
                         format,
                         mergeHeaders: cellMergedChecked,
-                        showFilters: includeFiltersChecked
+                        includeFilterContext: includeFiltersChecked
                     }
                 },
             }
@@ -71,10 +71,12 @@ export default function ExportCommand({sendCommand}) {
                 />
             </CardContent>
             <CardActions>
-                <Button className={classes.button} size="small" variant="outlined" color={"primary"} onClick={exportCsv}>
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"}
+                        onClick={exportCsv}>
                     Export to CSV
                 </Button>
-                <Button className={classes.button} size="small" variant="outlined" color={"primary"} onClick={exportXlsx}>
+                <Button className={classes.button} size="small" variant="outlined" color={"primary"}
+                        onClick={exportXlsx}>
                     Export to XLSX
                 </Button>
             </CardActions>
