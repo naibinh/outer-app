@@ -1,14 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import * as ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 import "./styles/index.css";
 import AdApp from './components/AD/App';
 import KdApp from './components/KD/App';
 
+function AppRouter() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" component={AdApp}/>
+                {/*<Route exact path="/ad" component={AdApp}/>*/}
+                <Route exact path="/kd" component={KdApp}/>
+            </Switch>
+        </Router>
+    );
+}
+
 ReactDOM.render(
-    <AdApp/>,
+    <AppRouter/>,
     document.getElementById('root')
 );
 

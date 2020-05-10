@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function KdCommands({logCommand}) {
+export default function Commands({logCommand}) {
     const classes = useStyles();
     const [isWithContextId, setWithContextId] = useState(true);
 

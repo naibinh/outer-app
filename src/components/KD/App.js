@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import EmbeddedGdc from "../EmbeddedGdc";
 import ExpansionLogs from "../ExpansionLogs";
 import Theme from "../Theme";
-import KdCommands from "./Commands";
+import Commands from "./Commands";
 import {EMBEDDED_KD} from "./Constant";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,34 +39,40 @@ function App() {
         }, ...logs]);
     };
 
+    const handleReceiveMessage = (event) => {
+        if (!event || !event.data) {
+            return false;
+        }
+
+        let gdc;
+        if (typeof event.data === "string") {
+            try {
+                const data = JSON.parse(event.data);
+                gdc = data && data.gdc;
+            } catch (_) {
+
+            }
+        } else {
+            gdc = event.data.gdc;
+        }
+
+        if (gdc) {
+            setLogs(prevLogs => [{
+                id: Date.now(),
+                direction: "embedded to outer",
+                timestamp: (new Date()).toLocaleTimeString(),
+                description: gdc,
+            }, ...prevLogs]);
+        }
+    };
+
     useEffect(() => {
-        window.addEventListener('message', function (event) {
-            if (!event || !event.data) {
-                return false;
-            }
+        window.addEventListener('message', handleReceiveMessage);
 
-            let gdc;
-            if (typeof event.data === "string") {
-                try {
-                    const data = JSON.parse(event.data);
-                    gdc = data && data.gdc;
-                } catch (_) {
-
-                }
-            } else {
-                gdc = event.data.gdc;
-            }
-
-            if (gdc) {
-                setLogs([{
-                    id: Date.now(),
-                    direction: "embedded to outer",
-                    timestamp: (new Date()).toLocaleTimeString(),
-                    description: gdc,
-                }, ...logs]);
-            }
-        });
-    }, [logs]);
+        return function unhandleReceiveMessage () {
+            window.removeEventListener('message', handleReceiveMessage);
+        };
+    }, []);
 
     return (
         <Theme>
@@ -75,7 +81,7 @@ function App() {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography>Commands</Typography>
-                            <KdCommands logCommand={logCommand}/>
+                            <Commands logCommand={logCommand}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={9}>
