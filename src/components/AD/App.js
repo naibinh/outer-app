@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -39,34 +39,40 @@ function App() {
         }, ...logs]);
     };
 
+    const handleReceiveMessage = (event) => {
+        if (!event || !event.data) {
+            return false;
+        }
+
+        let gdc;
+        if (typeof event.data === "string") {
+            try {
+                const data = JSON.parse(event.data);
+                gdc = data && data.gdc;
+            } catch (_) {
+
+            }
+        } else {
+            gdc = event.data.gdc;
+        }
+
+        if (gdc) {
+            setLogs(prevLogs => [{
+                id: Date.now(),
+                direction: "embedded to outer",
+                timestamp: (new Date()).toLocaleTimeString(),
+                description: gdc,
+            }, ...prevLogs]);
+        }
+    };
+
     useEffect(() => {
-        window.addEventListener('message', function (event) {
-            if (!event || !event.data) {
-                return false;
-            }
+        window.addEventListener('message', handleReceiveMessage);
 
-            let gdc;
-            if (typeof event.data === "string") {
-                try {
-                    const data = JSON.parse(event.data);
-                    gdc = data && data.gdc;
-                } catch (_) {
-
-                }
-            } else {
-                gdc = event.data.gdc;
-            }
-
-            if (gdc) {
-                setLogs([{
-                    id: Date.now(),
-                    direction: "embedded to outer",
-                    timestamp: (new Date()).toLocaleTimeString(),
-                    description: gdc,
-                }, ...logs]);
-            }
-        });
-    }, [logs]);
+        return function unhandleReceiveMessage () {
+            window.removeEventListener('message', handleReceiveMessage);
+        };
+    }, []);
 
     return (
         <Theme>

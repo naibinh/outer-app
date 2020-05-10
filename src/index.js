@@ -8,7 +8,7 @@ import AdApp from './components/AD/App';
 import KdApp from './components/KD/App';
 
 ReactDOM.render(
-    <KdApp/>,
+    <AdApp/>,
     document.getElementById('root')
 );
 
