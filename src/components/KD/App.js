@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 
 import EmbeddedGdc from "../EmbeddedGdc";
 import ExpansionLogs from "../ExpansionLogs";
-import Commands from "./Commands";
 import Theme from "../Theme";
-import {EMBEDDED_AD} from "./constant";
+import Commands from "./Commands";
+import {EMBEDDED_KD} from "./Constant";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -84,12 +84,12 @@ function App() {
                             <Commands logCommand={logCommand}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={9}>
                         <Paper className={classes.paper}>
-                            <EmbeddedGdc appName="ad" id={EMBEDDED_AD}/>
+                            <EmbeddedGdc appName="kd"  id={EMBEDDED_KD}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                         <Paper className={classes.logs}>
                             <ExpansionLogs logs={logs}/>
                         </Paper>

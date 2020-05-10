@@ -10,7 +10,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        // backgroundColor: "#f5f5f5"
     },
     heading: {
         padding: "5px",
@@ -22,17 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 function ExpansionLog(props) {
     const classes = useStyles();
-    const {timestamp, description, direction, expanded} = props;
+    const {timestamp, description, direction, expanded, index} = props;
     const [isExpand, setExpand] = useState(expanded);
 
     function onChange(_event, expanded) {
         setExpand(Boolean(expanded));
     }
 
-    // update `isExpand` whenever `expanded` prop is changed
+    // collapse log item whenever new first log item is added
     useEffect(() => {
         setExpand(Boolean(expanded));
-    }, [expanded]);
+    }, [index]);
 
     return (
         <ExpansionPanel expanded={isExpand} onChange={onChange}>
@@ -67,7 +66,7 @@ export default function ExpansionLogs(props) {
                 const {id, timestamp, description, direction} = log;
                 const expanded = index === 0;
                 return (<ExpansionLog key={id} timestamp={timestamp} description={description} direction={direction}
-                                      expanded={expanded}/>)
+                                      expanded={expanded} index={index}/>)
             })}
         </div>
     );
