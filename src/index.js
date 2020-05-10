@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 import "./styles/index.css";
@@ -11,8 +11,8 @@ function AppRouter() {
     return (
         <Router>
             <Switch>
-                <Route path="/" component={AdApp}/>
-                {/*<Route exact path="/ad" component={AdApp}/>*/}
+                <Route exact path="/" component={AdApp}/>
+                <Route exact path="/ad" component={AdApp}/>
                 <Route exact path="/kd" component={KdApp}/>
             </Switch>
         </Router>
