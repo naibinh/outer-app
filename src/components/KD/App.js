@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,7 @@ import ExpansionLogs from "../ExpansionLogs";
 import Theme from "../Theme";
 import Commands from "./Commands";
 import {EMBEDDED_KD} from "./Constant";
+import {useMessage} from "../../hooks/useMessage";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,51 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
     const classes = useStyles();
-    const [logs, setLogs] = useState([]);
-
-    const logCommand = (command) => {
-        setLogs([{
-            id: Date.now(),
-            direction: "outer to embedded",
-            timestamp: (new Date()).toLocaleTimeString(),
-            description: command.gdc,
-        }, ...logs]);
-    };
-
-    const handleReceiveMessage = (event) => {
-        if (!event || !event.data) {
-            return false;
-        }
-
-        let gdc;
-        if (typeof event.data === "string") {
-            try {
-                const data = JSON.parse(event.data);
-                gdc = data && data.gdc;
-            } catch (_) {
-
-            }
-        } else {
-            gdc = event.data.gdc;
-        }
-
-        if (gdc) {
-            setLogs(prevLogs => [{
-                id: Date.now(),
-                direction: "embedded to outer",
-                timestamp: (new Date()).toLocaleTimeString(),
-                description: gdc,
-            }, ...prevLogs]);
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('message', handleReceiveMessage);
-
-        return function unhandleReceiveMessage () {
-            window.removeEventListener('message', handleReceiveMessage);
-        };
-    }, []);
+    const { logs, clearLogs, logCommand } = useMessage();
 
     return (
         <Theme>
@@ -91,7 +48,7 @@ function App() {
                     </Grid>
                     <Grid item xs={3}>
                         <Paper className={classes.logs}>
-                            <ExpansionLogs logs={logs}/>
+                            <ExpansionLogs logs={logs} clearLogs={clearLogs}/>
                         </Paper>
                     </Grid>
                 </Grid>
