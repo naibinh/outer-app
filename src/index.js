@@ -1,19 +1,19 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 import "./styles/index.css";
-import AdApp from './components/AD/App';
-import KdApp from './components/KD/App';
+import AD from './components/AD/App';
+import KD from './components/KD/App';
 
 function AppRouter() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={AdApp}/>
-                <Route exact path="/ad" component={AdApp}/>
-                <Route exact path="/kd" component={KdApp}/>
+                <Route exact path="/" component={AD}/>
+                <Route exact path="/ad" component={AD}/>
+                <Route exact path="/kd" component={KD}/>
             </Switch>
         </Router>
     );

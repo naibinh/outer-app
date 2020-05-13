@@ -6,10 +6,13 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        position: 'relative',
     },
     heading: {
         padding: "5px",
@@ -17,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
+    clearButton: {
+        position: "absolute",
+        top: -10,
+        right: 0
+    }
 }));
 
 function ExpansionLog(props) {
@@ -56,12 +64,15 @@ function ExpansionLog(props) {
 }
 
 export default function ExpansionLogs(props) {
-    const {logs = []} = props;
+    const {logs = [], clearLogs} = props;
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <Typography>Logs</Typography>
+            <IconButton onClick={clearLogs} aria-label="delete" color="secondary" className={classes.clearButton}>
+                <DeleteIcon fontSize="small"/>
+            </IconButton>
             {logs.map((log, index) => {
                 const {id, timestamp, description, direction} = log;
                 const expanded = index === 0;

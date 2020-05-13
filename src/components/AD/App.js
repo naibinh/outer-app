@@ -66,6 +66,8 @@ function App() {
         }
     };
 
+    const clearLogs = () => setLogs([]);
+
     useEffect(() => {
         window.addEventListener('message', handleReceiveMessage);
 
@@ -91,7 +93,7 @@ function App() {
                     </Grid>
                     <Grid item xs={4}>
                         <Paper className={classes.logs}>
-                            <ExpansionLogs logs={logs}/>
+                            <ExpansionLogs logs={logs} clearLogs={clearLogs}/>
                         </Paper>
                     </Grid>
                 </Grid>
