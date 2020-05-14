@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        position: 'relative',
+        width: "100%",
+        position: "relative",
     },
     heading: {
         padding: "5px",
@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
     clearButton: {
         position: "absolute",
         top: -10,
-        right: 0
-    }
+        right: 0,
+    },
 }));
 
 function ExpansionLog(props) {
     const classes = useStyles();
-    const {timestamp, description, direction, expanded, index} = props;
+    const { timestamp, description, direction, expanded, index } = props;
     const [isExpand, setExpand] = useState(expanded);
 
     function onChange(_event, expanded) {
@@ -44,7 +44,7 @@ function ExpansionLog(props) {
     return (
         <ExpansionPanel expanded={isExpand} onChange={onChange}>
             <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon/>}
+                expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
@@ -56,7 +56,7 @@ function ExpansionLog(props) {
                     multiline
                     rowsMax={20}
                     variant="outlined"
-                    value={JSON.stringify(description, null, '\t')}
+                    value={JSON.stringify(description, null, "\t")}
                 />
             </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -64,20 +64,33 @@ function ExpansionLog(props) {
 }
 
 export default function ExpansionLogs(props) {
-    const {logs = [], clearLogs} = props;
+    const { logs = [], clearLogs } = props;
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <Typography>Logs</Typography>
-            <IconButton onClick={clearLogs} aria-label="delete" color="secondary" className={classes.clearButton}>
-                <DeleteIcon fontSize="small"/>
+            <IconButton
+                onClick={clearLogs}
+                aria-label="delete"
+                color="secondary"
+                className={classes.clearButton}
+            >
+                <DeleteIcon fontSize="small" />
             </IconButton>
             {logs.map((log, index) => {
-                const {id, timestamp, description, direction} = log;
+                const { id, timestamp, description, direction } = log;
                 const expanded = index === 0;
-                return (<ExpansionLog key={id} timestamp={timestamp} description={description} direction={direction}
-                                      expanded={expanded} index={index}/>)
+                return (
+                    <ExpansionLog
+                        key={id}
+                        timestamp={timestamp}
+                        description={description}
+                        direction={direction}
+                        expanded={expanded}
+                        index={index}
+                    />
+                );
             })}
         </div>
     );

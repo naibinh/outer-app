@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
-import {CARD_STYLE} from "../../styles";
-
+import { CARD_STYLE } from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
     ...CARD_STYLE(theme),
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         fontSize: "10px",
-    }
+    },
 }));
 
 function buildCommand() {
@@ -26,12 +25,12 @@ function buildCommand() {
             product: "dashboard",
             event: {
                 name: "cancelEdit",
-            }
-        }
+            },
+        },
     };
 }
 
-export default function CancelCommand({sendCommand}) {
+export default function CancelCommand({ sendCommand }) {
     const classes = useStyles();
 
     const cancelEditDashboard = (event) => {
@@ -43,8 +42,13 @@ export default function CancelCommand({sendCommand}) {
     };
 
     return (
-        <Button className={classes.button} size="small" variant="outlined" color={"primary"}
-                onClick={cancelEditDashboard}>
+        <Button
+            className={classes.button}
+            size="small"
+            variant="outlined"
+            color={"primary"}
+            onClick={cancelEditDashboard}
+        >
             Cancel Dashboard
         </Button>
     );

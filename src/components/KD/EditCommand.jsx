@@ -1,10 +1,9 @@
-import React, {useRef} from 'react';
+import React, { useRef } from "react";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
-import {CARD_STYLE} from "../../styles";
-
+import { CARD_STYLE } from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
     ...CARD_STYLE(theme),
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         fontSize: "10px",
-    }
+    },
 }));
 
 function buildCommand() {
@@ -26,12 +25,12 @@ function buildCommand() {
             product: "dashboard",
             event: {
                 name: "switchToEdit",
-            }
-        }
+            },
+        },
     };
 }
 
-export default function EditCommand({sendCommand}) {
+export default function EditCommand({ sendCommand }) {
     const classes = useStyles();
 
     const editDashboard = (event) => {
@@ -43,8 +42,13 @@ export default function EditCommand({sendCommand}) {
     };
 
     return (
-        <Button className={classes.button} size="small" variant="outlined" color={"primary"}
-                onClick={editDashboard}>
+        <Button
+            className={classes.button}
+            size="small"
+            variant="outlined"
+            color={"primary"}
+            onClick={editDashboard}
+        >
             Edit Dashboard
         </Button>
     );

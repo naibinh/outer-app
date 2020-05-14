@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, { Fragment, useState } from "react";
 import merge from "lodash/merge";
 
 import Checkbox from "@material-ui/core/Checkbox";
@@ -9,11 +9,10 @@ import SaveCommand from "./SaveCommand";
 import OtherCommands from "./OtherCommands";
 import ExportCommand from "./ExportCommand";
 
-import {getContextId, sendCommand} from "../../utils";
-import {EMBEDDED_AD} from "./constant";
+import { getContextId, sendCommand } from "../../utils";
+import { EMBEDDED_AD } from "./constant";
 
-export default function Commands({logCommand}) {
-
+export default function Commands({ logCommand }) {
     const [isWithContextId, setWithContextId] = useState(true);
 
     const send = (command, contextName) => {
@@ -23,8 +22,8 @@ export default function Commands({logCommand}) {
                 gdc: {
                     event: {
                         contextId: getContextId(contextName),
-                    }
-                }
+                    },
+                },
             });
         }
 
@@ -39,20 +38,14 @@ export default function Commands({logCommand}) {
     return (
         <Fragment>
             <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={isWithContextId}
-                        onChange={handleOnChange}
-                        color="secondary"
-                    />
-                }
+                control={<Checkbox checked={isWithContextId} onChange={handleOnChange} color="secondary" />}
                 label="Send command with contextId"
             />
-            <br/>
-            <OpenCommand sendCommand={send}/>
-            <SaveCommand sendCommand={send}/>
-            <ExportCommand sendCommand={send}/>
-            <OtherCommands sendCommand={send}/>
+            <br />
+            <OpenCommand sendCommand={send} />
+            <SaveCommand sendCommand={send} />
+            <ExportCommand sendCommand={send} />
+            <OtherCommands sendCommand={send} />
         </Fragment>
     );
 }

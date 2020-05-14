@@ -1,8 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, { Fragment, useState } from "react";
 import merge from "lodash/merge";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import { makeStyles } from '@material-ui/core';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import { makeStyles } from "@material-ui/core";
 
 import EditCommand from "./EditCommand";
 import SaveCommand from "./SaveCommand";
@@ -10,9 +10,9 @@ import CancelCommand from "./CancelCommand";
 // import OtherCommands from "./OtherCommands";
 // import ExportCommand from "./ExportCommand";
 
-import {getContextId, sendCommand} from "../../utils";
-import {EMBEDDED_KD} from "./Constant";
-import { CARD_STYLE } from '../../styles';
+import { getContextId, sendCommand } from "../../utils";
+import { EMBEDDED_KD } from "./Constant";
+import { CARD_STYLE } from "../../styles";
 
 const useStyles = makeStyles((theme) => ({
     ...CARD_STYLE(theme),
@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         fontSize: "10px",
-    }
+    },
 }));
 
-export default function Commands({logCommand}) {
+export default function Commands({ logCommand }) {
     const classes = useStyles();
     const [isWithContextId, setWithContextId] = useState(true);
 
@@ -39,8 +39,8 @@ export default function Commands({logCommand}) {
                 gdc: {
                     event: {
                         contextId: getContextId(contextName),
-                    }
-                }
+                    },
+                },
             });
         }
 

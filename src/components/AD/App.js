@@ -1,15 +1,15 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 import EmbeddedGdc from "../EmbeddedGdc";
 import ExpansionLogs from "../ExpansionLogs";
 import Commands from "./Commands";
 import Theme from "../Theme";
-import {EMBEDDED_AD} from "./constant";
-import {useMessage} from "../../hooks/useMessage";
+import { EMBEDDED_AD } from "./constant";
+import { useMessage } from "../../hooks/useMessage";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,17 +38,17 @@ function App() {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography>Commands</Typography>
-                            <Commands logCommand={logCommand}/>
+                            <Commands logCommand={logCommand} />
                         </Paper>
                     </Grid>
                     <Grid item xs={8}>
                         <Paper className={classes.paper}>
-                            <EmbeddedGdc appName="ad" id={EMBEDDED_AD}/>
+                            <EmbeddedGdc appName="ad" id={EMBEDDED_AD} />
                         </Paper>
                     </Grid>
                     <Grid item xs={4}>
                         <Paper className={classes.logs}>
-                            <ExpansionLogs logs={logs} clearLogs={clearLogs}/>
+                            <ExpansionLogs logs={logs} clearLogs={clearLogs} />
                         </Paper>
                     </Grid>
                 </Grid>
